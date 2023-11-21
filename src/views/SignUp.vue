@@ -31,7 +31,7 @@
           <el-option label="女" :value="0"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item prop="email">
+      <el-form-item prop="email" show-message>
         <el-input
           v-model="form.email"
           prefix-icon="el-icon-chat-square"
@@ -39,10 +39,17 @@
           placeholder="请输入邮箱"
         />
       </el-form-item>
+      <el-form-item prop="phne">
+        <el-input
+          v-model.number="form.phone"
+          prefix-icon="el-icon-phone"
+          placeholder="请输入手机号码"
+        />
+      </el-form-item>
       <el-form-item prop="addr">
         <el-input
           v-model="form.addr"
-          prefix-icon="el-icon-chat-square"
+          prefix-icon="el-icon-position"
           type="text"
           placeholder="请输入地址"
         />
@@ -58,8 +65,9 @@
   </el-card>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
-  name: 'signup',
+  name: "signup",
   data() {
     return {
       form: {
@@ -67,6 +75,7 @@ export default {
         password: "",
         checkPass: "",
         sex: "",
+        phone: "",
         email: "",
         addr: "",
       },
@@ -79,31 +88,48 @@ export default {
           { required: true, message: "请再次输入密码", trigger: "blur" },
         ],
         sex: [{ required: true, message: "请输入性别" }],
-        email: [{ type:'email', required: false, message: "请输入邮箱" }],
+        phone: [{ required: false, message: "请输入手机号" }],
+        email: [
+          {
+            type: "email",
+            required: false,
+            message: "请输入邮箱",
+            trigger: "blur",
+          },
+        ],
         addr: [{ required: false, message: "请输入地址" }],
       },
     };
   },
+  computed: {
+    users() {
+      return this.$store.getters.getUsers;
+    }
+  },
   methods: {
+    ...mapActions(["addUser"]),
     toSignUp() {
       this.$router.push("/login").catch(() => {});
     },
     submit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          console.log(valid);
-          console.log(this.form);
-          this.$store.commit("pushInfo", this.form)
+          console.log(valid,'校验成功');
+          this.addUser(this.form)
+          console.log('所有用户信息:', this.users);
+          setTimeout(() => {
+            this.$router.push("/login").catch(() => { });
+            this.$message.success("注册成功");
+          }, 1000)
         }
-      })
+      });
     },
     resetForm() {
       this.$refs.form.resetFields();
-    }
+    },
   },
 };
 </script>
-
 
 <style lang="less" scoped>
 .el-card {

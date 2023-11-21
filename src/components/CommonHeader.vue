@@ -13,11 +13,14 @@
     <div class="r-content">
       <el-dropdown @command="handleCommand">
         <span class="el-dropdown-link">
-          <el-avatar :size="35" :src="require('@/assets/images/user1.jpg')"></el-avatar>
+          <el-avatar
+            :size="35"
+            :src="require('@/assets/images/user1.jpg')"
+          ></el-avatar>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="a">个人中心</el-dropdown-item>
-          <el-dropdown-item command="b">退出</el-dropdown-item>
+          <el-dropdown-item command="logout">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -25,6 +28,7 @@
 </template>
 
 <script>
+
 export default {
   name: "HeaderContainer",
   data() {
@@ -39,16 +43,16 @@ export default {
      * @param {string} command 要跳转的位置
      */
     handleCommand(command) {
-      if (command === 'a') {
-        this.$router.push('/user');
+      if (command === "a") {
+        this.$router.push("/user");
       }
-      if (command === 'b') {
-        localStorage.removeItem('token');
-        this.$router.push('/login');
+      if (command === "logout") {
+        localStorage.removeItem("token");
+        console.log(this.$store.state.userInfo, 'userInfo');
+        this.$router.push("/login");
       }
-    }
+    },
   },
-  
 };
 </script>
 

@@ -28,7 +28,6 @@
   </el-card>
 </template>
 <script>
-
 import Mock from "mockjs";
 export default {
   data() {
@@ -45,36 +44,36 @@ export default {
       },
     };
   },
+  computed: {
+    users() {
+      return this.$store.getters.getUsers;
+    },
+  },
   methods: {
     toSignUp() {
-      this.$router.push("/signup")
+      this.$router.push("/signup");
     },
     submit() {
       // 校验通过
       this.$refs.form.validate((valid) => {
         if (valid) {
-          // getMenu(this.form).then(({ data }) => {
-          //   // console.log(data);
-          //   if (data.code == 20000) {
-          //     // Cookit.set("token", data.data.token);
-          //     localStorage.setItem("token", data.data.token)
-          //     this.$router.push("/home");
-          //     this.$message.success("登录成功");
-          //   } else {
-          //     this.$message.error("登录失败");
-          //   }
-          // });
-          if (this.form.username === 'admin' && this.form.password === 'admin') {
+          const user = this.users.find((user) => user.name === this.form.username);
+          console.log(user, "获取的user");
+          if (user && user.password === this.form.password) {
             const token = Mock.Random.guid();
-            localStorage.setItem('token', token)
+            localStorage.setItem("token", token);
             this.$router.push("/home");
             this.$message.success("登录成功");
+            console.log(this.users, "登录后");
           } else {
             this.$message.error("登录失败");
           }
         }
       });
     },
+  },
+  mounted() {
+    console.log(this.users, "user");
   },
 };
 </script>
