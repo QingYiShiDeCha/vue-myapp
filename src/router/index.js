@@ -12,28 +12,17 @@ import SignUp from '@/views/SignUp.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  { path: '/', name: 'login', component: Login },
+  { path: '/signup', name: 'signup', component: SignUp },
   {
-    path: '/',
-    name: 'main',
-    component: Main,
-    redirect: '/home',  // 重定向
-    children: [
-      { path: 'home', name: 'home', component: Home },
-      { path: 'user', name: 'user', component: User },
-      { path: 'mall', name: 'mall', component: Mall },
-      { path: 'page1', name: 'page1', component: PageOne },
-      { path: 'page2', name: 'page2', component: PageTwo }
+    path: '/main', name: 'main', component: Main, redirect: '/home',  children:
+    [
+      { path: '/home', name: 'home', component: Home },
+      { path: '/user', name: 'user', component: User },
+      { path: '/mall', name: 'mall', component: Mall },
+      { path: '/pageone', name: 'pageone', component: PageOne },
+      { path: '/pagetwo', name: 'pagetwo', component: PageTwo }
     ]
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: Login
-  },
-  {
-    path: '/signup',
-    name: 'signup',
-    component: SignUp
   }
 ]
 
@@ -45,3 +34,33 @@ const router = new VueRouter({
 })
 
 export default router
+
+
+
+
+// const routes = [
+//   {
+//     path: '/',
+//     name: 'login',
+//     component: Login,
+//     redirect: '/login',  // 重定向
+//   },
+//   {
+//     path: '/signup',
+//     name: 'signup',
+//     component: SignUp
+//   },
+//   {
+//     path: '/main',
+//     name: 'main',
+//     component: Main,
+//     redirect: '/home',  // 重定向
+//     children: [
+//       { path: 'home', name: 'home', component: Home },
+//       { path: 'user', name: 'user', component: User },
+//       { path: 'mall', name: 'mall', component: Mall },
+//       { path: 'page1', name: 'page1', component: PageOne },
+//       { path: 'page2', name: 'page2', component: PageTwo }
+//     ]
+//   }
+// ]

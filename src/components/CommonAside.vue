@@ -62,10 +62,10 @@
 export default {
   data() {
     return {
-      // isCollapse: false,
+      isCollapse: false,
       menuData: [
         {
-          path: "/",
+          path: "/home",
           name: "home",
           label: "首页",
           icon: "s-home",

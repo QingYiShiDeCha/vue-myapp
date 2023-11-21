@@ -28,7 +28,6 @@
   </el-card>
 </template>
 <script>
-
 export default {
   data() {
     return {
@@ -44,14 +43,31 @@ export default {
       },
     };
   },
-  
-  
+
   methods: {
     toSignUp() {
       this.$router.push("/signup");
     },
     submit() {
-
+      const user = this.$store.state.userInfo.find(
+        (item) => (item.name = this.form.username)
+      );
+      console.log(user);
+      if (this.form.username === "" || this.form.password === "") {
+        this.$message.error("请输入用户名和密码");
+        return;
+      } else if (user && this.form.password === user.password) {
+        this.$message.success("登录成功");
+        this.$router.push("/home");
+      } else if (
+        this.form.username === "admin" &&
+        this.form.password === "admin"
+      ) {
+        this.$message.success("登录成功");
+        this.$router.push("/home");
+      } else {
+        this.$message.error("用户名或密码错误");
+      }
     },
   },
 };

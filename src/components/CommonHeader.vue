@@ -28,7 +28,6 @@
 </template>
 
 <script>
-
 export default {
   name: "HeaderContainer",
   data() {
@@ -47,9 +46,8 @@ export default {
         this.$router.push("/user");
       }
       if (command === "logout") {
-        localStorage.removeItem("token");
-        console.log(this.$store.state.userInfo, 'userInfo');
-        this.$router.push("/login");
+        this.$router.push("/");
+        this.$message.success("退出成功");
       }
     },
   },

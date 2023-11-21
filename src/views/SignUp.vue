@@ -25,7 +25,7 @@
           placeholder="请再次输入密码"
         />
       </el-form-item>
-      <el-form-item prop="sex">
+      <!-- <el-form-item prop="sex">
         <el-select v-model="form.sex" placeholder="请选择" style="width: 360px">
           <el-option label="男" :value="1"></el-option>
           <el-option label="女" :value="0"></el-option>
@@ -53,7 +53,7 @@
           type="text"
           placeholder="请输入地址"
         />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item class="button_area">
         <el-button type="primary" @click="submit">注 册</el-button>
         <el-button @click="resetForm('form')">重 置</el-button>
@@ -103,9 +103,12 @@ export default {
   },
   
   methods: {
-
+    toSignUp() {
+      this.$router.push("/");
+    },
     submit() {
-      
+      this.$store.commit('addUserInfo', this.form)
+      this.$router.push('/')
     },
     resetForm() {
       this.$refs.form.resetFields();
