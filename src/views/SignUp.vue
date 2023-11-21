@@ -65,7 +65,6 @@
   </el-card>
 </template>
 <script>
-import { mapActions } from "vuex";
 export default {
   name: "signup",
   data() {
@@ -99,30 +98,14 @@ export default {
         ],
         addr: [{ required: false, message: "请输入地址" }],
       },
+      
     };
   },
-  computed: {
-    users() {
-      return this.$store.getters.getUsers;
-    }
-  },
+  
   methods: {
-    ...mapActions(["addUser"]),
-    toSignUp() {
-      this.$router.push("/login").catch(() => {});
-    },
+
     submit() {
-      this.$refs.form.validate((valid) => {
-        if (valid) {
-          console.log(valid,'校验成功');
-          this.addUser(this.form)
-          console.log('所有用户信息:', this.users);
-          setTimeout(() => {
-            this.$router.push("/login").catch(() => { });
-            this.$message.success("注册成功");
-          }, 1000)
-        }
-      });
+      
     },
     resetForm() {
       this.$refs.form.resetFields();
