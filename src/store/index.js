@@ -8,7 +8,18 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    userInfo: []
+    userInfo: [
+      {
+        username: 'admin',
+        password: 'admin',
+        checkPass: 'admin',
+        name: '清茶',
+        sex: '1',
+        phone: '13888888888',
+        email: 'qingcha@qq.com',
+        addr: '北京海定区'
+      }
+    ]
   },
   mutations: {
     /**
