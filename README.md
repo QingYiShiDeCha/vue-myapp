@@ -1,5 +1,10 @@
 # vue-myapp
 
+## npm set
+```
+npm config set registry https://registry.npmmirror.com/
+```
+
 ## Project setup
 ```
 yarn install
