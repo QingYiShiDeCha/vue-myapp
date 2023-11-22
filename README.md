@@ -1,5 +1,8 @@
 # vue-myapp
 
+## 说明
++ 基于 NodeJs 16版本以上创建的项目，请确保NodeJS版本在16以上
+
 ## npm set
 ```
 npm config set registry https://registry.npmmirror.com/

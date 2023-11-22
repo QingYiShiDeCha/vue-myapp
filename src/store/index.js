@@ -1,10 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-
-
 Vue.use(Vuex)
-
 
 const store = new Vuex.Store({
   state: {
@@ -19,7 +16,8 @@ const store = new Vuex.Store({
         email: 'qingcha@qq.com',
         addr: '北京海定区'
       }
-    ]
+    ],
+    currLoginUser: {}
   },
   mutations: {
     /**
@@ -31,8 +29,29 @@ const store = new Vuex.Store({
       state.userInfo.push(data)
       console.log(data);
       console.log(state.userInfo, 'state');
+    },
+    getCurrLogin(state, data) {
+      state.currLoginUser = data
+      console.log(state.currLoginUser, 'state.currLogin');
+    },
+    setUserInfo(state, updatedUser) {
+      const index = state.userInfo.findIndex(user => user.username === updatedUser.username);
+      if (index !== -1) {
+        // 更新用户信息
+        state.userInfo[index] = {
+          ...state.userInfo[index],
+          ...updatedUser
+        };
+      }
+      state.currLoginUser = updatedUser; // 更新用户信息
     }
-  }
+  },
+  getters: {
+    getCurrUser: state => {
+      return state.currLoginUser
+    }
+  },
+
 })
 
 export default store

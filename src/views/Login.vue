@@ -28,6 +28,7 @@
   </el-card>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -45,6 +46,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['getCurrLogin']),
     toSignUp() {
       this.$router.push("/signup");
     },
@@ -61,6 +63,7 @@ export default {
           } else if (user && this.form.password === user.password) {
             this.$message.success("登录成功");
             this.$router.push("/home");
+            this.getCurrLogin(user);
           } else if (user && this.form.password !== user.password) {
             this.$message.error("密码错误，请检查密码");
           }  else if (user === undefined) {
