@@ -55,6 +55,18 @@ export default {
           type: "马克杯",
           sales: Math.floor(Math.random() * (1000 - 100 + 1) + 100),
         },
+        {
+          id: 60,
+          name: "天才马克杯",
+          type: "马克杯",
+          sales: Math.floor(Math.random() * (1000 - 100 + 1) + 100),
+        },
+        {
+          id: 60,
+          name: "蠢材马克杯",
+          type: "马克杯",
+          sales: Math.floor(Math.random() * (1000 - 100 + 1) + 100),
+        }
       ],
 
     };
@@ -73,7 +85,15 @@ export default {
           data: ["销量"],
         },
         xAxis: {
+          type: 'category',
           data: this.tableData.map((item) => item.name),
+          boundaryGap: true,
+          axisLabel: {
+            interval: 0,
+          },
+          axisTick: {
+            alignWithLabel: true,
+          }
         },
         yAxis: {},
         series: [
