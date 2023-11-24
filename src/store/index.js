@@ -15,9 +15,10 @@ const store = new Vuex.Store({
         phone: '13888888888',
         email: 'qingcha@qq.com',
         addr: '北京海定区'
-      }
+      },
     ],
-    currLoginUser: {}
+    currLoginUser: {},
+    isCollapse: false,  // 用于控制菜单的展开还是收起
   },
   mutations: {
     /**
@@ -44,6 +45,10 @@ const store = new Vuex.Store({
         };
       }
       state.currLoginUser = updatedUser; // 更新用户信息
+    },
+    collapseMenu(state) {
+      state.isCollapse = !state.isCollapse;
+      console.log(state.isCollapse);
     }
   },
   getters: {

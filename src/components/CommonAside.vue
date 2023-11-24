@@ -62,7 +62,7 @@
 export default {
   data() {
     return {
-      isCollapse: false,
+      // isCollapse: false,
       menuData: [
         {
           path: "/home",
@@ -138,11 +138,11 @@ export default {
       return this.menuData.filter((item) => item.children);
     },
     isCollapse() {
-      return this.$store.state.tab.isCollapse;
+      return this.$store.state.isCollapse;
     },
   },
   mounted() {
     this.activeUrl = this.$route.path.slice(1);
-  },
+  }, 
 };
 </script>
