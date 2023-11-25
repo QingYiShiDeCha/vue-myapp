@@ -28,7 +28,8 @@
   </el-card>
 </template>
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
@@ -46,15 +47,15 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['getCurrLogin']),
+    ...mapMutations(["getCurrLogin"]),
     toSignUp() {
       this.$router.push("/signup");
     },
     submit() {
       const user = this.$store.state.userInfo.find(
-        (item) => (item.name = this.form.username)
+        (item) => (item.username === this.form.username)
       );
-      console.log(user);
+      console.log(user, '当前要登录的用户');
       this.$refs.form.validate((valid) => {
         if (valid) {
           if (this.form.username === "" || this.form.password === "") {
@@ -66,7 +67,7 @@ export default {
             this.getCurrLogin(user);
           } else if (user && this.form.password !== user.password) {
             this.$message.error("密码错误，请检查密码");
-          }  else if (user === undefined) {
+          } else if (user === undefined) {
             this.$message.error("用户不存在");
           } else {
             this.$message.error("用户名或密码错误");

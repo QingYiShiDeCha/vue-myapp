@@ -14,13 +14,25 @@
         :rules="rules"
       >
         <el-form-item label="原密码" prop="oldPassword" required>
-          <el-input v-model="form.oldPassword"></el-input>
+          <el-input
+            v-model="form.oldPassword"
+            type="password"
+            show-password
+          ></el-input>
         </el-form-item>
         <el-form-item label="新密码" prop="newPassword" required>
-          <el-input v-model="form.newPassword"></el-input>
+          <el-input
+            v-model="form.newPassword"
+            type="password"
+            show-password
+          ></el-input>
         </el-form-item>
         <el-form-item label="确认密码" prop="confirmPassword" required>
-          <el-input v-model="form.confirmPassword"></el-input>
+          <el-input
+            v-model="form.confirmPassword"
+            type="password"
+            show-password
+          ></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -79,16 +91,16 @@ export default {
       } else {
         callback();
       }
-    }
-    let checkConfirmPwd = (rule, value, callback) => { 
+    };
+    let checkConfirmPwd = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("确认密码不能为空"));
-      } else if (value !== this.form.newPassword) { 
+      } else if (value !== this.form.newPassword) {
         callback(new Error("两次输入密码不一致"));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
       userInfo: {},
       Introduce: "这是一个懒惰的管理员",
