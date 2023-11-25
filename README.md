@@ -8,6 +8,11 @@
 npm config set registry https://registry.npmmirror.com/
 ```
 
+### npm install yarn
+```
+npm install -g yarn
+```
+
 ## Project setup
 ```
 yarn install
